@@ -1,0 +1,13 @@
+node_modules
+.DS_Store
+package-lock.json
+
+# Public folder
+public/
+public/*
+resources/
+resources/*
+/resources/
+/resources/*
+docs/static/main.js
+docs/static/main.css
