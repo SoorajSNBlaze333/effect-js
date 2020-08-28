@@ -1,4 +1,4 @@
-const Parallax = {
+(function(){'use strict';const Parallax = {
   elements: null,
   init: function(elements) {
     this.elements = elements;
@@ -13,7 +13,7 @@ const Parallax = {
       element.style.left = 0;
       element.style.willChange = 'transform';
       element.style.transform = 'translate3d(' + position[0] + 'px, ' + position[1] + 'px, 0px)';
-    })
+    });
     this.setupListeners();
   },
   setupListeners: function() {
@@ -45,16 +45,13 @@ const Parallax = {
             element.style.transform = 'translate3d(' + position[0] + 'px, ' + y + 'px, 0px)';
             break;
           }
-          default: {
-            break;
-          }
         }
-      })
-    })
+      });
+    });
   }
 };
 
 window.addEventListener('DOMContentLoaded', function() {
   const parallaxElements = document.querySelectorAll("[effect='parallax']");
   if (parallaxElements.length) return Parallax.init(parallaxElements);
-})
+});}());

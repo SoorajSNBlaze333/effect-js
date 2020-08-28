@@ -1,5 +1,45 @@
 {{ define "main"}}
 
-<div effect="parallax"></div>
+<!-- <div 
+  style="height: 300vh" 
+  class="w-100 color-change" 
+  effect="colorchange"
+  colors='["#ffffff", "#000000", "#ff0000"]'
+  stops="[800, 1600, 2800]"
+  scrollDirection="vertical"
+>
+</div> -->
+
+<div class="h-100 w-100 position-relative"></div>
+<div class="w-100 h-100 border position-relative overflow-hidden" id="ball-container">
+  <div class="parallax-text">Parallax Effect</div>
+</div>
+<div class="h-100 w-100 position-relative"></div>
+
+<script>
+  for (let medium = 0; medium < 30; medium++) {
+    let ball = document.createElement('div');
+    ball.setAttribute('class', 'ball-medium');
+    ball.setAttribute('effect', 'parallax');
+    ball.setAttribute('strength', Math.random() * (0.8 - 0.5) + 0.5);
+    ball.setAttribute('scrollDirection', 'vertical');
+    ball.setAttribute('parallaxDirection', '-y');
+    ball.style.top = (Math.random() * (120 + 20) - 20) + '%';
+    ball.style.left = (Math.random() * (120 + 20) - 20) + '%';
+    document.getElementById('ball-container').append(ball)
+  };
+
+  for (let small = 0; small < 30; small++) {
+    let ball = document.createElement('div');
+    ball.setAttribute('class', 'ball-small');
+    ball.setAttribute('effect', 'parallax');
+    ball.setAttribute('strength', Math.random() * (0.5 - 0.1) + 0.1);
+    ball.setAttribute('scrollDirection', 'vertical');
+    ball.setAttribute('parallaxDirection', '-y');
+    ball.style.top = (Math.random() * (110 + 10) - 10) + '%';
+    ball.style.left = (Math.random() * (110 + 10) - 10) + '%';
+    document.getElementById('ball-container').append(ball)
+  };
+</script>
 
 {{ end }}
