@@ -1,45 +1,30 @@
 {{ define "main"}}
 
-<!-- <div 
-  style="height: 300vh" 
-  class="w-100 color-change" 
-  effect="colorchange"
-  colors='["#ffffff", "#000000", "#ff0000"]'
-  stops="[800, 1600, 2800]"
-  scrollDirection="vertical"
->
-</div> -->
+<section class="h-100 w-100 position-relative d-flex justify-content-center align-items-center flex-column">
+  <div class="display-2">Effect JS</div>
+  <div class="font-weight-lighter">Simple effects for the web</div>
+
+  <div class="position-absolute text-center" style="bottom: 20px">
+    <div class="font-weight-lighter">Scroll down for effects</div>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-down"><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg>
+  </div>
+</section>
+
+<section class="h-100 w-100 position-relative overflow-hidden">
+  <div class="card w-100 overflow-hidden position-relative" style="height: 400px">
+    <img src="/parallax.jpg" class="img-fluid" effect="parallax" strength="0.1" direction="vertical" scale="1.3"/>
+    <div class="parallax-text">Parallax</div>
+  </div>
+
+  <div class="row m-0 p-3">
+    <img src="/parallax-floater.jpg" class="img-floating img-fluid col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 p-0" effect="parallax" strength="-0.2" direction="vertical" scale="1"/>
+    <p class="p-3 m-0  col-xs-12 col-sm-12 col-md-6 col-lg-8 col-xl-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae semper quis lectus nulla at volutpat. Enim lobortis scelerisque fermentum dui faucibus in ornare quam. Praesent tristique magna sit amet purus gravida quis. Ut sem nulla pharetra diam sit amet nisl suscipit. Diam maecenas ultricies mi eget. Arcu bibendum at varius vel pharetra. Imperdiet nulla malesuada pellentesque elit eget gravida cum sociis natoque. Pharetra diam sit amet nisl suscipit adipiscing bibendum est ultricies. Sed libero enim sed faucibus turpis. Sit amet nulla facilisi morbi tempus iaculis urna. Orci porta non pulvinar neque laoreet suspendisse interdum consectetur. Ut consequat semper viverra nam libero justo laoreet sit. A lacus vestibulum sed arcu non odio euismod lacinia at. Dui ut ornare lectus sit amet. Mauris commodo quis imperdiet massa tincidunt nunc pulvinar sapien et. Leo vel orci porta non pulvinar neque. Turpis cursus in hac habitasse platea dictumst quisque.
+
+    Eu nisl nunc mi ipsum faucibus vitae aliquet nec. Eget magna fermentum iaculis eu. Felis bibendum ut tristique et egestas quis ipsum. Vestibulum sed arcu non odio euismod lacinia at quis risus. Enim sit amet venenatis urna. Platea dictumst quisque sagittis purus sit amet volutpat consequat mauris. Viverra mauris in aliquam sem fringilla ut morbi. Bibendum neque egestas congue quisque egestas. Arcu cursus euismod quis viverra nibh cras. Sed viverra tellus in hac habitasse. Purus faucibus ornare suspendisse sed nisi lacus sed viverra tellus. Justo laoreet sit amet cursus sit amet. Nisl rhoncus mattis rhoncus urna. Eu sem integer vitae justo eget magna. Arcu felis bibendum ut tristique et egestas quis. Tristique nulla aliquet enim tortor at auctor urna nunc. Elit ut aliquam purus sit. Viverra vitae congue eu consequat ac felis. Eu nisl nunc mi ipsum faucibus vitae aliquet nec. Eget magna fermentum iaculis eu. Felis bibendum ut tristique et egestas quis ipsum. Vestibulum sed arcu non odio euismod lacinia at quis risus. Enim sit amet venenatis urna. Platea dictumst quisque sagittis purus sit amet volutpat consequat mauris. Viverra mauris in aliquam sem fringilla ut morbi. Bibendum neque egestas congue quisque egestas. Arcu cursus euismod quis viverra nibh cras. Sed viverra tellus in hac habitasse. Purus faucibus ornare suspendisse sed nisi lacus sed viverra tellus. Justo laoreet sit amet cursus sit amet. Nisl rhoncus mattis rhoncus urna. Eu sem integer vitae justo eget magna. Arcu felis bibendum ut tristique et egestas quis. Tristique nulla aliquet enim tortor at auctor urna nunc. Elit ut aliquam purus sit. Viverra vitae congue eu consequat ac felis.</p>
+  </div>
+</section>
 
 <div class="h-100 w-100 position-relative"></div>
-<div class="w-100 h-100 border position-relative overflow-hidden" id="ball-container">
-  <div class="parallax-text">Parallax Effect</div>
-</div>
-<div class="h-100 w-100 position-relative"></div>
 
-<script>
-  for (let medium = 0; medium < 30; medium++) {
-    let ball = document.createElement('div');
-    ball.setAttribute('class', 'ball-medium');
-    ball.setAttribute('effect', 'parallax');
-    ball.setAttribute('strength', Math.random() * (0.8 - 0.5) + 0.5);
-    ball.setAttribute('scrollDirection', 'vertical');
-    ball.setAttribute('parallaxDirection', '-y');
-    ball.style.top = (Math.random() * (120 + 20) - 20) + '%';
-    ball.style.left = (Math.random() * (120 + 20) - 20) + '%';
-    document.getElementById('ball-container').append(ball)
-  };
-
-  for (let small = 0; small < 30; small++) {
-    let ball = document.createElement('div');
-    ball.setAttribute('class', 'ball-small');
-    ball.setAttribute('effect', 'parallax');
-    ball.setAttribute('strength', Math.random() * (0.5 - 0.1) + 0.1);
-    ball.setAttribute('scrollDirection', 'vertical');
-    ball.setAttribute('parallaxDirection', '-y');
-    ball.style.top = (Math.random() * (110 + 10) - 10) + '%';
-    ball.style.left = (Math.random() * (110 + 10) - 10) + '%';
-    document.getElementById('ball-container').append(ball)
-  };
-</script>
 
 {{ end }}

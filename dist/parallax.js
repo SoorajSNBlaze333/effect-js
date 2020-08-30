@@ -2,51 +2,42 @@
   elements: null,
   init: function(elements) {
     this.elements = elements;
-    this.setPosition();
+    this.setupElement();
   },
-  setPosition: function() {
+  getPosition: function(element) {
+    var distance = 0;
+    do {
+      distance += element.offsetTop;
+      element = element.offsetParent;
+    } while (element);
+    distance = distance < 0 ? 0 : distance;
+    return distance;
+  },
+  setPosition: function(element, getPosition) {
+    let direction = element.getAttribute('direction');
+    let scroll = direction === 'vertical' ? scrollY : scrollX;
+    let strength = JSON.parse(element.getAttribute('strength'));
+    let scale = JSON.parse(element.getAttribute('scale'));
+    let top = getPosition(element);
+    if (direction === 'vertical') {
+      let height = (window.innerHeight - element.offsetHeight) / 2;
+      let y = Math.round((top - height - scroll) * strength);
+      element.style.transform = 'translate3d(0px,' + y + 'px, 0px) scale(' + scale + ')';
+    }
+  },
+  setupElement: function() {
     let elements = this.elements;
-    elements.forEach(function(element, index) { 
-      let position = [Math.round(element.offsetLeft), Math.round(element.offsetTop)];
-      element.setAttribute('position', JSON.stringify(position));
-      element.style.top = 0;
-      element.style.left = 0;
-      element.style.willChange = 'transform';
-      element.style.transform = 'translate3d(' + position[0] + 'px, ' + position[1] + 'px, 0px)';
-    });
+    let setPosition = this.setPosition;
+    let getPosition = this.getPosition;
+    elements.forEach(function(element, index) { return setPosition(element, getPosition) });
     this.setupListeners();
   },
   setupListeners: function() {
     let elements = this.elements;
+    let setPosition = this.setPosition;
+    let getPosition = this.getPosition;
     window.addEventListener('scroll', function() {
-      elements.forEach(function(element, index) {
-        let scroll = element.getAttribute('scrollDirection') === 'vertical' ? scrollY : scrollX;
-        let direction = element.getAttribute('parallaxDirection');
-        let position = JSON.parse(element.getAttribute('position'));
-        let strength = JSON.parse(element.getAttribute('strength'));
-        switch(direction) {
-          case '-x': {
-            let x = (position[0] - (scroll * strength * 0.5));
-            element.style.transform = 'translate3d(' + x + 'px, ' + position[1] + 'px, 0px)';
-            break;
-          }
-          case 'x': {
-            let x = (position[0] + (scroll * strength * 0.5));
-            element.style.transform = 'translate3d(' + x + 'px, ' + position[1] + 'px, 0px)';
-            break;
-          }
-          case '-y': {
-            let y = (position[1] - (scroll * strength * 0.5));
-            element.style.transform = 'translate3d(' + position[0] + 'px, ' + y + 'px, 0px)';
-            break;
-          }
-          case 'y': {
-            let y = (position[1] + (scroll * strength * 0.5));
-            element.style.transform = 'translate3d(' + position[0] + 'px, ' + y + 'px, 0px)';
-            break;
-          }
-        }
-      });
+      elements.forEach(function(element, index) { return setPosition(element, getPosition) });
     });
   }
 };

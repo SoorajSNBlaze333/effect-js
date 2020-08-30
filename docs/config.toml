@@ -1,5 +1,5 @@
 baseURL = ""
-title = "Tooltip Sequence"
+title = "Effect-JS"
 
 disableKinds = ["taxonomy", "taxonomyTerm"]
 languageCode = "en-us"
@@ -11,9 +11,9 @@ canonifyURLs = true
 
 [params]
   author = ""
-  sitename = "Tooltip Sequence"
+  sitename = "Effect-JS"
   image = "/brand/og.png"
-  description = "Tooltip Sequence"
+  description = "Effect-JS"
 
 [markup]
   defaultMarkdownHandler = "goldmark"
